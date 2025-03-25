@@ -9,7 +9,9 @@ export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body
 
-    const [foundUser] = await findUserByEmail(email, true)
+    const {
+      data: [foundUser],
+    } = await findUserByEmail(email, true)
     if (!foundUser) return sendError(req, res, "user-not-found")
 
     const isValidPassword = bcrypt.compareSync(password, foundUser.password)
