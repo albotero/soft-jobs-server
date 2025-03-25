@@ -4,7 +4,7 @@ export const log = (req, ...details) => {
   console.log(datetime, method, originalUrl, ...details)
 }
 
-export const logsMiddleware = (req, _, next) => {
+export const logRequest = (req, _, next) => {
   log(req)
   next()
 }

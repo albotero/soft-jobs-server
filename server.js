@@ -2,6 +2,7 @@ import express from "express"
 import cors from "cors"
 import env from "./config/env.js"
 import usersRoutes from "./src/routes/users.routes.js"
+import authRoutes from "./src/routes/auth.routes.js"
 import { resourceNotFound } from "./src/controllers/errors.controllers.js"
 
 const { SERVER_PORT, SERVER_URL, CLIENT_URL } = env
@@ -17,6 +18,7 @@ app.use(cors(corsOptions))
 app.use(express.json())
 
 app.use("/", usersRoutes)
+app.use("/", authRoutes)
 app.use("*", resourceNotFound)
 
 app.listen(SERVER_PORT, () => {

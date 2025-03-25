@@ -27,10 +27,11 @@ export const createUser = async ({ email, password, rol, lenguage }) => {
   return newUser
 }
 
-export const findUserByEmail = async (email) => {
-  const [user] = await executeQuery(
+export const findUserByEmail = async (email, returnPassword) => {
+  const columns = returnPassword ? "*" : "email, rol, lenguage"
+  const user = await executeQuery(
     `SELECT
-      email, rol, lenguage
+      ${columns}
     FROM usuarios
     WHERE email = '%s'`,
     email
