@@ -15,7 +15,7 @@ export const checkToken = async (req, res, next) => {
 
     req.user = email
     next()
-  } catch ({ message }) {
+  } catch {
     sendError(req, res, "invalid-token")
   }
 }
